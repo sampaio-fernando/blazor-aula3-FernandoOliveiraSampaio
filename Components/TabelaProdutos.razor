@@ -1,0 +1,36 @@
+@typeparam TItem
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        @Cabecalho
+    </tr>
+    </thead>
+    <tbody>
+        @if (Itens.Count() == 0)
+        {
+            <MessageVazio />
+        }
+        else
+        {
+            @foreach (var i in Itens)
+            {
+                <tr>
+                    @Linhas(i)
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+
+@code {
+    [Parameter]
+    public IEnumerable<TItem> Itens { get; set; }
+    //recebe a estrutura visual do cabeçalho
+    [Parameter]
+    public RenderFragment Cabecalho {get; set;}
+    //recebe a estrutura visual das linhas e tem acesso ao objeto   
+    [Parameter]
+    public RenderFragment<TItem> Linhas {get; set;}
+}

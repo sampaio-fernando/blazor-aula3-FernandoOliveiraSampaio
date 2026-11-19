@@ -1,0 +1,31 @@
+
+<EditForm Model="@ProdutoFormulario" OnValidSubmit="EnviarProduto">
+    <DataAnnotationsValidator/>
+
+    <label class="form-label">Nome</label>
+    <InputText class="form-control mb-2" @bind-Value="ProdutoFormulario.Nome"/>
+    <ValidationMessage For="@(() => ProdutoFormulario.Nome)"/>
+
+    <label class="form-label">Preço</label>
+    <InputNumber class="form-control mb-2" @bind-Value="ProdutoFormulario.Preco"/>
+    <ValidationMessage For="@(() => ProdutoFormulario.Preco)"/>
+
+    <label class="form-label">Quantidade</label>
+    <InputNumber class="form-control mb-2" @bind-Value="ProdutoFormulario.Quantidade"/>
+
+    <button class="btn btn-primary" type="submit">Adicionar produto</button>
+</EditForm>
+
+
+@code {
+    [Parameter] 
+    public Produto ProdutoFormulario { get; set; } = new();
+
+    [Parameter]
+    public EventCallback<Produto> Click { get; set; }
+
+    private async Task EnviarProduto()
+    {
+        await Click.InvokeAsync(ProdutoFormulario);
+    }
+}

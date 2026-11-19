@@ -1,0 +1,36 @@
+﻿@page "/produtos"
+
+<div class="row">
+	<div class="col-md-4">
+		<Cartao Titulo="Produtos">
+			<FormProduto ProdutoFormulario="@produtoFormulario" Click="@AdicionarProduto"/>
+		</Cartao>
+	</div>
+	
+	<div class="col-md-8">
+		<TabelaProdutos Itens="produtos">
+			<Cabecalho>
+				<th>Descrição</th>
+				<th>Preço</th>
+				<th>Quantidade</th>
+			</Cabecalho>
+			<Linhas Context="produto">
+				<td>@produto.Nome</td>
+				<td>@produto.Preco</td>
+				<td>@produto.Quantidade</td>
+			</Linhas>
+		</TabelaProdutos>
+	</div>
+</div>
+
+@code {
+	private Produto produtoFormulario = new();
+	private List<Produto> produtos = new();
+
+	private void AdicionarProduto(Produto produto)
+	{
+		produtos.Add(produto);
+		//novo objeto para limpar os campos
+		produtoFormulario = new Produto();
+	}
+}
