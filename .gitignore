@@ -181,6 +181,15 @@ coverage*.info
 *.coverage
 *.coveragexml
 
+# Arquivos gerados pelo .NET
+bin/
+obj/
+
+# Arquivos do Visual Studio
+.vs/
+*.user
+*.suo
+
 # NCrunch
 _NCrunch_*
 .NCrunch_*
